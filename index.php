@@ -2,8 +2,6 @@
 session_start();
 $i=0;
 $xml = simplexml_load_file('data.xml');
-//$xml[]=simplexml_load_string($myXMLData) or die("Error: Cannot create object");
-
 if (isset($_POST["insert"])) {
     $employee = $xml->addChild('employee');
     $employee->addchild('name', $_POST['name']);
@@ -41,12 +39,14 @@ elseif(isset($_POST["update"])){
     }
     $xml->asXML('data.xml');
 }elseif (isset($_POST["prev"])) {
-    if ($_SESSION["id"]<= 0) {
-        $i = 0;
-        $_SESSION["id"]=$i;
-    } else {
-        $_SESSION["id"]=$_SESSION["id"]-1;
-        $i=$_SESSION["id"];
+    if(isset($_SESSION["id"])) {
+        if ($_SESSION["id"] <= 0) {
+            $i = 0;
+            $_SESSION["id"] = $i;
+        } else {
+            $_SESSION["id"] = $_SESSION["id"] - 1;
+            $i = $_SESSION["id"];
+        }
     }
 
 }
@@ -64,10 +64,10 @@ elseif (isset($_POST["searchbyname"])) {
     }
     if(!$found)
     {
-        echo "there is no employee with this name";
+        echo "<h1 style='color: #0d5699; '><i>there is no employee with this name</i></h1>";
     }
     else{
-        echo "found";
+        echo "<h1 style='color: #0d5699;'><i>found</i></h1>";
     }
 
 }elseif (isset($_POST["next"])) {
@@ -87,54 +87,54 @@ elseif (isset($_POST["searchbyname"])) {
         $_SESSION["id"] = $i;}
 }
 
-
-
-//print_r($xml);
-highlight_string('<?php ' . var_export($xml, true) . ';?>');
-echo count($xml[0]->employee);
-
-
-foreach ($xml as $key=>$value){
-    echo $value;
-    echo "<br>";
-    //echo $value[$key];
-    echo "<br>";
-}
-echo "hey";
-//for($i=0;$i<count($xml);$i++){
-//    echo $xml[0];
-//}
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>XYZ </title>
+    <link rel="stylesheet" href="style.css">
+    <title>XML-Form</title>
 
 </head>
 <body>
 <div class="content">
     <div class="left">
 <!--        <img src="../images/img2.png" alt="">-->
+
         <h1 class = "form">Form</h1>
     </div>
     <div class="right">
-        <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+        <form class="bckgrndform" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
 
 
             <h2>Name</h2>
-            <input type="text" placeholder="" value="<?php echo $xml[0]->employee[$i]->name;?>" name="name">
+            <input  class="name" type="text" placeholder="" value="<?php echo $xml[0]->employee[$i]->name;?>" name="name">
             <h2>phone</h2>
-            <input type="text" placeholder="phone" value="<?php echo $xml[0]->employee[$i]->phone;?>" name="phonenumber">
+            <input class="phone" type="text" placeholder="phone" value="<?php echo $xml[0]->employee[$i]->phone;?>" name="phonenumber">
             <h2>Adress</h2>
-            <input type="text"  name="Adress"value="<?php echo $xml[0]->employee[$i]->adress;?>" placeholder="Address">
+            <input class="address" type="text"  name="Adress"value="<?php echo $xml[0]->employee[$i]->adress;?>" placeholder="Address">
             <h2>Email</h2>
-            <input type="email" placeholder="E-mail" value="<?php echo $xml[0]->employee[$i]->email;?>" name="email">
-            <br><br><br>
-            <button type="submit" name="prev">prev</button>  <br><br>  <button type="submit" name="next">next</button><br><br>
-            <button type="submit" name="insert">insert</button>  <br> <br>  <button type="submit" name="update">update</button><br><br>
-            <button type="submit" name="delete">delete</button>  <br> <br>   <button type="submit" name="searchbyname">searchbyname</button>
-<!---->
+            <input class="email" type="email" placeholder="E-mail" value="<?php echo $xml[0]->employee[$i]->email;?>" name="email">
+
+          <pre>        <table class="table">
+                <tr>
+                    <th><button class="prev"   type="submit" name="prev">prev</button></th>
+                    <th> <button class="next"  type="submit" name="next">next</button></th>
+                </tr>
+                <br>
+                <br>
+                <tr>
+                    <td><button class="insert"  type="submit" name="insert">insert</button></td>
+                    <td><button class="update"  type="submit" name="update">update</button></td>
+                </tr>
+                <br>
+                <br>
+                <tr>
+                    <td><button class="delete"  name="delete">delete</button></td>
+                    <td><button class="search" type="submit" name="searchbyname">search</button></td>
+                </tr>
+            </table>
+              </pre>
         </form>
         <br>
     </div>

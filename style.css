@@ -1,0 +1,89 @@
+*{
+    margin:0;
+    padding:0;
+
+}
+.content{
+    width: 50%;
+    border: black;
+    background-image: linear-gradient(45deg, #105a97ba, transparent);
+    text-align:center;
+    width: 50%;
+    height: 80%;
+    margin: 0 auto;
+    border-style:solid;
+    margin-top: 80px;
+}
+.left{
+    border: #292929;
+}
+.form{
+    overflow: hidden;
+    background-color: #0d5699;
+    height:50px ;
+    color: white;
+    text-align: center;
+}
+.right{
+    padding-top: 20px;
+    text-align:center;
+    width: 50%;
+    height: 80%;
+    margin: 0 auto;
+}
+
+
+.table{
+    margin: auto;
+}
+.prev{
+    width:50px; margin:10px;
+}
+.next{
+    width:50px; margin:10px;
+}
+.insert{
+    width:50px; margin:10px;
+}
+.update{
+    width:50px; margin:10px;
+}
+.delete{
+    width:50px; margin:10px;
+}
+.search{
+    width:50px; margin:10px;}
+@media (max-width: 700px) {
+    .content{
+        width: 50%;
+        border: black;
+        background-image: linear-gradient(45deg, #105a97ba, transparent);
+        text-align:center;
+        width: 50%;
+        height: 80%;
+        margin: 0 auto;
+        border-style:solid;
+        margin-top: 40px;
+    }
+    .right{
+        padding-top: 10px;
+        text-align:center;
+        width: 50%;
+        height: 80%;
+        margin: 0 auto;
+    }
+    .name{
+        width:50%;
+    }
+    .address{
+        width:50%;
+    }
+    .email{
+        width:50%;
+    }
+    .phone{
+        width:50%;
+    }
+
+
+}
